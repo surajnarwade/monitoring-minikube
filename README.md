@@ -31,6 +31,13 @@ Updating Prometheus Config & apply immediately
 make config
 ```
 
+Installing AlertManager
+-----------------------
+
+```
+make alert-manager
+```
+
 Cleanup
 -------
 
