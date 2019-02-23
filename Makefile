@@ -26,9 +26,9 @@ node-exporter:
 	kubectl apply -f node-exporter/
 
 .PHONY: prometheus-config
-prometeus-config:
+prometheus-config:
 	kubectl delete configmap prometheus-config -n monitoring
-	kubectl create configmap prometheus-config --from-file prometheus-config/prometheus.yml -n monitoring
+	kubectl create configmap prometheus-config --from-file prometheus-config/prometheus.yml --from-file prometheus-config/alerts.yml  -n monitoring
 	kubectl scale deployment prometheus --replicas=0 -n monitoring
 	kubectl scale deployment prometheus --replicas=1 -n monitoring
 

@@ -26,7 +26,19 @@ route:
       repeat_interval: 3h
       # A default receiver
       receiver: slack-alerts
+      routes:
+      - receiver: email-alerts
+
 receivers:
+    - name: email-alerts
+      email_configs:
+      - to: <receiver>
+        from: <sender>
+        smarthost: smtp.gmail.com:587
+        auth_username: <sender>
+        auth_identity: <sender>
+        auth_password: <token>
+         
     - name: slack-alerts
       slack_configs:
       - send_resolved: true

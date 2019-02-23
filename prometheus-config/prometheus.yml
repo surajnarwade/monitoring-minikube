@@ -5,6 +5,16 @@ global:
   external_labels:
     monitor: 'codelab-monitor'
       # Scraping Prometheus itself
+
+rule_files:
+ - alerts.yml
+
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets: ['alertmanager']
+
 scrape_configs:
 - job_name: 'prometheus'
   scrape_interval: 5s

@@ -1,0 +1,13 @@
+groups:
+  - name: default
+    rules:
+    - alert: NumberOfPods
+      expr: kubelet_running_pod_count > 18
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        # summary: "Number of {{ $labels.instance }} down"
+        # description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes."
+        summary: "Number of pods are greater than 18"
+        description: "Number of pod on {{ $labels.kubernetes_io_hostname }} has been greater than 18 for more than 1 minutes. Severity level is {{ $labels.severity }}"
