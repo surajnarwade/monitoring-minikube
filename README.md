@@ -60,3 +60,31 @@ curl -H "Content-Type: application/json" -d '[{"status": "firing", "labels":{"al
 * Cofiguring Gmail
 
 For security you shouldn't use your main Gmail password. Instead rather generate an [app password](https://support.google.com/accounts/answer/185833?hl=en).
+
+
+* Push GATEWAY
+
+* simple metric
+
+```
+echo "some_metric 3.14" | curl --data-binary @- http://172.17.0.2:31462/metrics/job/some_job
+```
+
+
+* delete  metric
+
+```
+curl -X DELETE http://172.17.0.2:31462/metrics/job/some_job/
+```
+
+* delete
+
+```
+curl -X DELETE http://172.17.0.2:31462/metrics/job/some_job/instance/some_instance
+```
+
+
+* wipe out
+
+```
+curl -X PUT http://172.17.0.2:31462/api/v1/admin/wipe

@@ -1,14 +1,10 @@
 ---
-# Source: prometheus-pushgateway/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: test-prometheus-pushgateway
   labels:
     app: prometheus-pushgateway
-    # chart: prometheus-pushgateway-1.4.1
-    # heritage: Helm
-    # release: test
 spec:
   replicas: 1
   strategy:
@@ -16,20 +12,19 @@ spec:
   selector:
     matchLabels:
       app: prometheus-pushgateway
-      # release: test
   template:
     metadata:
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: '9091'
+        prometheus.io/scrape: 'true'
       labels:
         app: prometheus-pushgateway
-        # release: test
-      annotations:
-        {}
     spec:
       serviceAccountName: test-prometheus-pushgateway
       containers:
         - name: pushgateway
           image: "prom/pushgateway:v1.2.0"
-          # image:  "weaveworks/prom-aggregation-gateway"
           imagePullPolicy: IfNotPresent
           ports:
             - name: metrics
@@ -47,5 +42,3 @@ spec:
               port: 9091
             initialDelaySeconds: 10
             timeoutSeconds: 10
-          resources:
-            {}

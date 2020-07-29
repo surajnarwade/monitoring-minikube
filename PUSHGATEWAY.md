@@ -1,30 +1,6 @@
 ### Push Gateway
 
-* simple metric
 
-```
-echo "some_metric 3.14" | curl --data-binary @- http://172.17.0.2:31462/metrics/job/some_job
-```
-
-
-* delete  metric
-
-```
-curl -X DELETE http://172.17.0.2:31462/metrics/job/some_job/
-```
-
-* delete
-
-```
-curl -X DELETE http://172.17.0.2:31462/metrics/job/some_job/instance/some_instance
-```
-
-
-* wipe out
-
-```
-curl -X PUT http://172.17.0.2:31462/api/v1/admin/wipe
-```
 
 
 ### Case
